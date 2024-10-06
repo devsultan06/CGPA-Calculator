@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CGPA Calculator</title>
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>CGPA Calculator</h2>
+
+      <form action="">
+        <div class="box">
+          <label for="subjects">Course:</label>
+          <input type="text" id="course" name="course" />
+        </div>
+
+        <div class="box">
+          <label for="units">Unit:</label>
+          <select id="units" name="units">
+            <option value=""></option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+          </select>
+        </div>
+
+        <div class="box">
+          <label for="cars">Score:</label>
+          <input type="text" id="score" name="score" />
+        </div>
+
+        <button type="submit" id="add">Add Course</button>
+      </form>
+    </div>
+    <script src="./index.js"></script>
+  </body>
 </html>
