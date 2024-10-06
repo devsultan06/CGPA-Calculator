@@ -13,7 +13,7 @@ body {
 
 div.container {
   background-color: white;
-  height: 50vh;
+  height: 80vh;
   width: 500px;
   margin: auto auto;
   margin-top: 100px;
@@ -38,12 +38,14 @@ input {
   border: none;
   outline: none;
   border: 2px solid rgb(94, 94, 94);
+  border-radius: 5px;
 }
 
 select {
   padding: 10px;
   border: 2px solid rgb(94, 94, 94);
   cursor: pointer;
+  border-radius: 5px;
 }
 
 select option{
@@ -67,4 +69,36 @@ button#add {
   color: white;
   padding: 10px 15px;
   cursor: pointer;
+  transition: 0.1s ease all ;
 }
+
+button#add:hover {
+  background-color: #59a25c;
+}
+
+div.table-box h3{
+    margin-top: 30px;
+
+}
+
+table {
+  width: 100%;
+  border: 1px solid black;
+border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid rgb(172, 171, 171);
+  padding: 10px;
+}
+th{
+    background-color: rgb(232, 232, 232);
+    color: black;
+}
+
+th:nth-child(4) {
+  width: 200px; /* Adjust the width as needed */
+}
+
+
