@@ -13,8 +13,9 @@ body {
 
 div.container {
   background-color: white;
-  height: 80vh;
+  height: auto;
   width: 500px;
+  max-width: 470px;
   margin: auto auto;
   margin-top: 100px;
   padding: 10px;
@@ -22,6 +23,7 @@ div.container {
   -webkit-box-shadow: 0px 3px 28px -8px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 3px 28px -8px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 3px 28px -8px rgba(0, 0, 0, 0.75);
+  margin-bottom: 100px;
 }
 h2 {
   margin-bottom: 20px;
@@ -48,8 +50,8 @@ select {
   border-radius: 5px;
 }
 
-select option{
-    cursor: pointer;
+select option {
+  cursor: pointer;
 }
 
 input:focus {
@@ -61,7 +63,7 @@ label {
   margin-bottom: 10px;
 }
 
-button#add {
+button {
   background-color: #4cb050;
   border: none;
   outline: none;
@@ -69,36 +71,106 @@ button#add {
   color: white;
   padding: 10px 15px;
   cursor: pointer;
-  transition: 0.1s ease all ;
+  transition: 0.1s ease all;
 }
 
-button#add:hover {
+button:hover {
   background-color: #59a25c;
 }
 
-div.table-box h3{
-    margin-top: 30px;
+div.table-box h3 {
+  margin-top: 30px;
+}
 
+div.table-box {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 table {
   width: 100%;
   border: 1px solid black;
-border-collapse: collapse;
+  border-collapse: collapse;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-th, td {
+th,
+td {
   border: 1px solid rgb(172, 171, 171);
   padding: 10px;
 }
-th{
-    background-color: rgb(232, 232, 232);
-    color: black;
+th {
+  background-color: rgb(232, 232, 232);
+  color: black;
 }
 
 th:nth-child(4) {
   width: 200px; /* Adjust the width as needed */
 }
 
+/* index.css */
+button.edit {
+  background-color: #4caf50; /* Green */
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  margin-right: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
 
+button.delete {
+  background-color: #f44336; /* Red */
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button.edit:hover {
+  background-color: #45a049;
+}
+
+button.delete:hover {
+  background-color: #d32f2f;
+}
+
+/* index.css */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
