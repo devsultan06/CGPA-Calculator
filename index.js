@@ -3,7 +3,6 @@ const unitsSelect = document.getElementById("units");
 const scoreInput = document.getElementById("score");
 const form = document.querySelector("form");
 const tableBody = document.getElementById("table");
-const tableBody2 = document.getElementById("tbody");
 
 const editModal = document.getElementById("editModal");
 const editForm = document.getElementById("editForm");
@@ -26,6 +25,20 @@ form.addEventListener("submit", (event) => {
   const course = formData.get("course");
   const units = formData.get("units");
   const score = formData.get("score");
+
+  // Check if the course already exists
+  const existingRows = tableBody.getElementsByTagName("tr");
+  for (let row of existingRows) {
+    if (row.cells[0].textContent === course) {
+      alert("Course already exists!");
+      // Clear the input fields
+      courseInput.value = "";
+      unitsSelect.value = "";
+      scoreInput.value = "";
+      return;
+    }
+  }
+
   console.log(`Course: ${course}, Units: ${units}, Score: ${score}`);
 
   // Create a new row and cells
@@ -57,9 +70,14 @@ form.addEventListener("submit", (event) => {
   deleteButton.textContent = "Delete";
   deleteButton.classList.add("delete");
   deleteButton.addEventListener("click", () => {
-    // Remove the row from the table
-    tableBody.removeChild(newRow);
-    console.log(`Delete ${course}`);
+    // Show confirmation dialog
+    const confirmed = confirm("Are you sure you want to delete this course?");
+    if (confirmed) {
+      // Remove the row from the table
+      tableBody.removeChild(newRow);
+      console.log(`Delete ${course}`);
+      alert(`Course ${course} has been deleted!`);
+    }
   });
 
   // Append buttons to the action cell
@@ -98,6 +116,7 @@ editForm.addEventListener("submit", (event) => {
 
   // Close the modal
   editModal.style.display = "none";
+  alert(`Course ${course} is successfully updated!`);
 });
 
 closeModal.addEventListener("click", () => {
@@ -116,6 +135,7 @@ window.addEventListener("click", (event) => {
 
 resetButton.addEventListener("click", () => {
   // Clear all rows in the table body
-  tableBody2.innerHTML = "";
-  console.log("Reset");
+  while (tableBody.firstChild) {
+    tableBody.removeChild(tableBody.firstChild);
+  }
 });
