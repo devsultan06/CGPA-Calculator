@@ -49,11 +49,21 @@
           <tbody id="tbody"></tbody>
         </table>
 
-        <button id="calculate">Calculate CGPA</button>
-
+        <button id="calculate" onclick="calculatePercentage()">
+          Calculate CGPA
+        </button>
+        <div class="result" id="resultText"></div>
+        <div class="progress-circle" id="progressCircle">
+          <div class="circle">
+            <svg width="150" height="150">
+              <circle class="bg" cx="75" cy="75" r="70"></circle>
+              <circle class="progress" cx="75" cy="75" r="70"></circle>
+            </svg>
+            <div class="percentage" id="percentageText">0%</div>
+          </div>
+        </div>
       </div>
 
-      <!-- index.html -->
       <div id="editModal" class="modal">
         <div class="modal-content">
           <span class="close">&times;</span>

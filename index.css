@@ -177,3 +177,51 @@ button.delete:hover {
   text-decoration: none;
   cursor: pointer;
 }
+
+.progress-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  display: none;
+}
+
+.circle {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.circle svg {
+  transform: rotate(-90deg); /* Rotates the circle for correct starting point */
+}
+
+.circle .bg {
+  fill: none;
+  stroke: #f3f3f3;
+  stroke-width: 10;
+}
+
+.circle .progress {
+  fill: none;
+  stroke: #4caf50;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 440;
+  stroke-dashoffset: 440;
+  transition: stroke-dashoffset 1s ease;
+}
+
+.circle .percentage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.result {
+  margin-top: 20px;
+  font-size: 20px;
+}
