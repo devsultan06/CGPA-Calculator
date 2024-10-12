@@ -3,8 +3,7 @@ const unitsSelect = document.getElementById("units");
 const scoreInput = document.getElementById("score");
 const form = document.querySelector("form");
 const tableBody = document.getElementById("table");
-const progressCircle = document.getElementById("progress-circle");
-
+const progressCircle = document.getElementById("progressCircle");
 const editModal = document.getElementById("editModal");
 const editForm = document.getElementById("editForm");
 const editCourseInput = document.getElementById("editCourse");
@@ -12,9 +11,11 @@ const editUnitsSelect = document.getElementById("editUnits");
 const editScoreInput = document.getElementById("editScore");
 const closeModal = document.querySelector(".close");
 const cancelButton = document.getElementById("cancelButton");
-const resetButton = document.getElementById("reset");
+const calculateButton = document.getElementById("calculateButton"); // Add this line
 
 let editingRow = null;
+let totalPoints = 0;
+let totalUnits = 0;
 
 courseInput.addEventListener("input", (event) => {
   event.target.value = event.target.value.toUpperCase();
@@ -55,21 +56,28 @@ form.addEventListener("submit", (event) => {
   }
 
   // Multiply points by the unit
-  const totalPoints = points * units;
+  const coursePoints = points * units;
 
-  console.log(totalPoints);
+  // Update total points and units
+  totalPoints += coursePoints;
+  totalUnits += units;
+
+  // Compute CGPA
+  const cgpa = totalPoints / totalUnits;
 
   // Create a new row and cells
   const newRow = document.createElement("tr");
   const courseCell = document.createElement("td");
   const unitsCell = document.createElement("td");
   const scoreCell = document.createElement("td");
+  const pointsCell = document.createElement("td");
   const actionCell = document.createElement("td");
 
   // Set the text content of the cells
   courseCell.textContent = course;
   unitsCell.textContent = units;
   scoreCell.textContent = score;
+  pointsCell.textContent = coursePoints;
 
   // Create Edit and Delete buttons
   const editButton = document.createElement("button");
@@ -91,10 +99,19 @@ form.addEventListener("submit", (event) => {
     // Show confirmation dialog
     const confirmed = confirm("Are you sure you want to delete this course?");
     if (confirmed) {
+      // Update total points and units
+      totalPoints -= coursePoints;
+      totalUnits -= units;
+
+      // Compute CGPA
+      const cgpa = totalPoints / totalUnits;
+
       // Remove the row from the table
       tableBody.removeChild(newRow);
-      console.log(`Delete ${course}`);
       alert(`Course ${course} has been deleted!`);
+
+      // Update the progress circle
+      calculatePercentage(cgpa);
     }
   });
 
@@ -106,6 +123,7 @@ form.addEventListener("submit", (event) => {
   newRow.appendChild(courseCell);
   newRow.appendChild(unitsCell);
   newRow.appendChild(scoreCell);
+  newRow.appendChild(pointsCell);
   newRow.appendChild(actionCell);
 
   // Append the row to the table body
@@ -121,15 +139,45 @@ editForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(editForm);
   const course = formData.get("course");
-  const units = formData.get("units");
-  const score = formData.get("score");
+  const units = parseInt(formData.get("units"), 10);
+  const score = parseInt(formData.get("score"), 10);
+
+  // Calculate points based on the score
+  let points;
+  if (score >= 70) {
+    points = 4;
+  } else if (score >= 60) {
+    points = 3;
+  } else if (score >= 50) {
+    points = 2;
+  } else if (score >= 45) {
+    points = 1;
+  } else {
+    points = 0;
+  }
+
+  // Multiply points by the unit
+  const coursePoints = points * units;
 
   // Update the existing row
   if (editingRow) {
+    // Update total points and units
+    const oldUnits = parseInt(editingRow.cells[1].textContent, 10);
+    const oldPoints = parseInt(editingRow.cells[3].textContent, 10);
+    totalPoints = totalPoints - oldPoints + coursePoints;
+    totalUnits = totalUnits - oldUnits + units;
+
+    // Compute CGPA
+    const cgpa = totalPoints / totalUnits;
+
     editingRow.cells[0].textContent = course;
     editingRow.cells[1].textContent = units;
     editingRow.cells[2].textContent = score;
+    editingRow.cells[3].textContent = coursePoints;
     editingRow = null;
+
+    // Update the progress circle
+    calculatePercentage(cgpa);
   }
 
   // Close the modal
@@ -151,22 +199,27 @@ window.addEventListener("click", (event) => {
   }
 });
 
-function calculatePercentage() {
-  const userCgpa = 3.5;
+calculateButton.addEventListener("click", () => {
+  const cgpa = totalPoints / totalUnits;
+  calculatePercentage(cgpa);
+});
+
+function calculatePercentage(cgpa) {
   const totalCgpa = 4.0;
   const circle = document.querySelector(".progress");
   const percentageText = document.getElementById("percentageText");
   const resultText = document.getElementById("resultText");
   const progressCircle = document.getElementById("progressCircle");
 
-  if (userCgpa >= 0 && userCgpa <= totalCgpa) {
-    const percentage = (userCgpa / totalCgpa) * 100;
+  if (cgpa > 0 && cgpa <= totalCgpa) {
+    const percentage = (cgpa / totalCgpa) * 100;
     const radius = 70; // Radius of the circle
     const circumference = 2 * Math.PI * radius;
     const offset = circumference - (percentage / 100) * circumference;
 
     // Show the progress circle and reset it before animation
     progressCircle.style.display = "flex"; // Make it visible
+    resultText.style.display = "block";
     circle.style.strokeDashoffset = circumference; // Reset the progress circle
 
     // Update the percentage text immediately
@@ -178,8 +231,10 @@ function calculatePercentage() {
       percentageText.textContent = percentage.toFixed(1) + "%"; // Update the percentage text
     }, 100); // Small delay for the animation
 
-    resultText.textContent = `CGPA:${percentage.toFixed(1)}%`;
+    resultText.textContent = `CGPA: ${cgpa.toFixed(2)}`;
   } else {
-    alert("Please enter a valid CGPA between 0 and 4.");
+    // Hide the progress circle and result text
+    progressCircle.style.display = "none";
+    resultText.style.display = "none";
   }
 }
