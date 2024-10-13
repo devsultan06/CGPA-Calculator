@@ -11,7 +11,7 @@ const editUnitsSelect = document.getElementById("editUnits");
 const editScoreInput = document.getElementById("editScore");
 const closeModal = document.querySelector(".close");
 const cancelButton = document.getElementById("cancelButton");
-const calculateButton = document.getElementById("calculateButton"); // Add this line
+const calculateButton = document.getElementById("calculateButton");
 
 let editingRow = null;
 let totalPoints = 0;
@@ -29,13 +29,13 @@ document.addEventListener("DOMContentLoaded", () => {
     icon.className = "fa-solid fa-face-grin-beam-sweat"; // Change to a different icon class
   }, 5000);
 });
-// Wait 4 seconds before showing the CGPA calculator container
+// Wait 2 seconds before showing the CGPA calculator container
 setTimeout(() => {
   document.getElementById("loader").style.display = "none";
   const messageContainer = document.getElementById("messageBox");
   messageContainer.classList.add("show");
 }, 2000);
-// Wait 4 seconds before showing the CGPA calculator container
+// Wait 8 seconds before showing the CGPA calculator container
 setTimeout(() => {
   document.getElementById("messageBox").style.display = "none";
   const calculatorContainer = document.getElementById("calculatorContainer");
