@@ -11,7 +11,7 @@ body {
   text-align: center;
 }
 
-#loader{
+#loader {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -25,7 +25,7 @@ body {
   z-index: 1000;
 }
 
-#loader img{
+#loader img {
   mix-blend-mode: lighten;
 }
 
@@ -33,7 +33,7 @@ body {
   color: #4caf50;
   font-size: 100px;
 }
-/* Styling for the Message Box */
+
 .message-box {
   position: fixed;
   top: 50%;
@@ -45,8 +45,11 @@ body {
   border-radius: 5px;
   font-size: 16px;
   font-weight: bold;
-
   opacity: 0;
+}
+
+.message-box h2 {
+  margin-top: 30px;
 }
 
 .message-box.show {
@@ -65,8 +68,8 @@ body {
 }
 
 .container {
-   background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
-   color: white;
+  background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
+  color: white;
   height: auto;
   width: 500px;
   max-width: 470px;
@@ -172,12 +175,11 @@ th {
 }
 
 th:nth-child(5) {
-  width: 200px; /* Adjust the width as needed */
+  width: 200px;
 }
 
-/* index.css */
 button.edit {
-  background-color: #4caf50; /* Green */
+  background-color: #4caf50;
   color: white;
   border: none;
   padding: 5px 15px;
@@ -187,7 +189,7 @@ button.edit {
 }
 
 button.delete {
-  background-color: #f44336; /* Red */
+  background-color: #f44336;
   color: white;
   border: none;
   padding: 5px 15px;
