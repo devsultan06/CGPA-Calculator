@@ -16,6 +16,7 @@ This app is a **Cumulative Grade Point Average (CGPA) Calculator** designed to h
 - **HTML**: For the structure of the app.
 - **CSS**: For styling the app, including the use of Google Fonts and custom styles for the container, inputs, and buttons.
 - **JavaScript**: For the functionality of the app, including handling form submissions, calculating CGPA, and dynamically updating the DOM.
+- **SCSS**: For advanced styling and maintainable CSS code.
 
 ## CSS Styling
 
@@ -26,12 +27,21 @@ The CSS styling includes:
 - **Body Styling**: The body has a background color of whitesmoke and uses the "Inter" font.
 - **Container Styling**: The main container has a white background, rounded corners, and a box shadow for a card-like appearance. It is centered on the page with a maximum width of 470px.
 - **Form Elements**: Inputs and select elements are styled to be block-level elements with full width and a margin at the bottom for spacing.
+- **Animated Loader and Message**: Includes custom styles for an animated loader and a message box to improve user experience.
 
-## Usage
+## How to Use
 
-1. **Add Course**: Enter the course name, select the credit units, and input the score. Click the "Add Course" button to add the course to the table.
-2. **Edit Course**: Click the "Edit" button next to a course to edit its details.
-3. **Delete Course**: Click the "Delete" button next to a course to remove it from the table.
-4. **Calculate CGPA**: Click the "Calculate CGPA" button to calculate and display the CGPA along with the progress circle.
+1. Input the course name, credit units, and score in the provided fields.
+2. Click the "Add Course" button to add the course to the table.
+3. The table will dynamically update with the new course details.
+4. The CGPA will be automatically calculated and displayed along with a progress circle.
+5. Use the edit or delete buttons to modify any course details.
 
 This app provides a simple and effective way for students to keep track of their academic performance and calculate their CGPA.
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/cgpa-calculator.git
+   ```
