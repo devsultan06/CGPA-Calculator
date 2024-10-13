@@ -21,6 +21,27 @@ courseInput.addEventListener("input", (event) => {
   event.target.value = event.target.value.toUpperCase();
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const icon = document.getElementById("icon");
+
+  // Change the icon after 5 seconds (5000 milliseconds)
+  setTimeout(() => {
+    icon.className = "fa-solid fa-face-grin-beam-sweat"; // Change to a different icon class
+  }, 5000);
+});
+// Wait 4 seconds before showing the CGPA calculator container
+setTimeout(() => {
+  document.getElementById("loader").style.display = "none";
+  const messageContainer = document.getElementById("messageBox");
+  messageContainer.classList.add("show");
+}, 2000);
+// Wait 4 seconds before showing the CGPA calculator container
+setTimeout(() => {
+  document.getElementById("messageBox").style.display = "none";
+  const calculatorContainer = document.getElementById("calculatorContainer");
+  calculatorContainer.classList.add("show");
+}, 8000);
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(form);

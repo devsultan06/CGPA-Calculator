@@ -11,8 +11,62 @@ body {
   text-align: center;
 }
 
-div.container {
-  background-color: white;
+#loader{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#loader img{
+  mix-blend-mode: lighten;
+}
+
+#icon {
+  color: #4caf50;
+  font-size: 100px;
+}
+/* Styling for the Message Box */
+.message-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+
+  opacity: 0;
+}
+
+.message-box.show {
+  animation: slideIn 3s forwards;
+  opacity: 1;
+}
+
+/* Keyframe animation for sliding the message in from the left */
+@keyframes slideIn {
+  0% {
+    left: 0%;
+  }
+  100% {
+    left: 50%;
+  }
+}
+
+.container {
+   background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
+   color: white;
   height: auto;
   width: 500px;
   max-width: 470px;
@@ -24,6 +78,14 @@ div.container {
   -moz-box-shadow: 0px 3px 28px -8px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 3px 28px -8px rgba(0, 0, 0, 0.75);
   margin-bottom: 100px;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.container.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 h2 {
   margin-bottom: 20px;
@@ -40,6 +102,8 @@ input {
   border: none;
   outline: none;
   border: 2px solid rgb(94, 94, 94);
+  background-color: transparent;
+  color: white;
   border-radius: 5px;
 }
 
@@ -48,6 +112,8 @@ select {
   border: 2px solid rgb(94, 94, 94);
   cursor: pointer;
   border-radius: 5px;
+  color: white;
+  background-color: transparent;
 }
 
 select option {
