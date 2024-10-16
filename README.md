@@ -43,5 +43,5 @@ This app provides a simple and effective way for students to keep track of their
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/cgpa-calculator.git
+   git clone https://github.com/your-username/CGPA-Calculator.git
    ```
